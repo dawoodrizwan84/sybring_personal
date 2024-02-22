@@ -45,6 +45,7 @@ builder.Services.AddControllersWithViews();
 
 //Add Services:
 builder.Services.AddScoped<IConsultantServicves, ConsultantServices>();
+builder.Services.AddScoped<IProjectServices, ProjectServices>();
 
 
 var app = builder.Build();
