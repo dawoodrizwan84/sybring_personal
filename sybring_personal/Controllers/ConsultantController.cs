@@ -56,16 +56,68 @@ namespace sybring_personal.Controllers
             return RedirectToAction("Index");
         }
 
-       
-        public async Task<IActionResult> Edit(ConsultantVM consultantVM) 
+
+        public async Task<IActionResult> Edit(int id)
         {
-            var editCons = await _consultantServicves.UpdateConsultantAsync(consultantVM);
-            if (editCons)
+            var consultant = await _consultantServicves.GetConsultantByIdAsync(id);
+
+            if (consultant == null)
             {
-                return RedirectToAction("Index");
+                return NotFound();
             }
-            return View(editCons);
+
+            var projects = await _consultantServicves.GetProjects();
+
+            var consultantVM = new ConsultantVM
+            {
+                Id = consultant.Id,
+                Name = consultant.Name,
+                Address = consultant.Address,
+                Price = consultant.Price,
+                Description = consultant.Description,
+                ProjectId = consultant.ProjectId,
+                ChosenProject = consultant.ProjectId, // Assuming you want to pre-select the existing project
+                UserProjects = projects.Select(p => new SelectListItem
+                {
+                    Value = p.Id.ToString(),
+                    Text = p.Name,
+                    Selected = p.Id == consultant.ProjectId // Pre-select the existing project in the dropdown
+                }).ToList()
+            };
+
+            return View(consultantVM);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ConsultantVM consultantVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var success = await _consultantServicves.UpdateConsultantAsync(consultantVM);
+
+                if (success)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Failed to update consultant. Please try again.");
+                }
+            }
+
+            // If ModelState is not valid or if the update was not successful, return to the Edit view with the model.
+            var projects = await _consultantServicves.GetProjects();
+            consultantVM.UserProjects = projects.Select(p => new SelectListItem
+            {
+                Value = p.Id.ToString(),
+                Text = p.Name,
+                Selected = p.Id == consultantVM.ChosenProject
+            }).ToList();
+
+            return View(consultantVM);
+        }
+
 
         public async Task<IActionResult> Delete(int id)
         {

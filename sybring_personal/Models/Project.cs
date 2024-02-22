@@ -2,6 +2,11 @@
 {
     public class Project
     {
+        public Project()
+        {
+            ProjectUsers = new List<User>();
+            TimeId = new List<TimeHistory>();
+        }
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; } = null;

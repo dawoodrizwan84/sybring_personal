@@ -11,12 +11,12 @@ namespace sybring_personal.Data
         {
         }
 
-        public DbSet<Billing> billings { get; set; }
-        public DbSet<Consultant> consultants { get; set; }
+        public DbSet<Billing> Billings { get; set; }
+        public DbSet<Consultant> Consultants { get; set; }
 
-        public DbSet<Project> projects { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
-        public DbSet<TimeHistory> timeHistories { get; set; }
+        public DbSet<TimeHistory> TimeHistories { get; set; }
 
         public DbSet<User> Users { get; set; }
     }
