@@ -25,6 +25,7 @@ namespace sybring_personal.Repos.Services
                 Price = consultantVM.Price,
                 Description = consultantVM.Description,
                 ProjectId = consultantVM.ProjectId,
+                Email = consultantVM.Email,
                 Project = _db.Projects.FirstOrDefault(f => f.Id == consultantVM.ChosenProject)!,
 
 
@@ -92,6 +93,7 @@ namespace sybring_personal.Repos.Services
                 existingConsultant.Price = consultantVM.Price;
                 existingConsultant.Description = consultantVM.Description;
                 existingConsultant.ProjectId = consultantVM.ProjectId;
+                existingConsultant.Email = consultantVM.Email;
                 existingConsultant.Project = _db.Projects.FirstOrDefault(f => f.Id == consultantVM.ChosenProject);
 
                 _db.Update(existingConsultant);

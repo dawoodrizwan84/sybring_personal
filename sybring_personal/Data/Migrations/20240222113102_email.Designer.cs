@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using sybring_personal.Data;
 
@@ -11,9 +12,11 @@ using sybring_personal.Data;
 namespace sybring_personal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240222113102_email")]
+    partial class email
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,7 +174,7 @@ namespace sybring_personal.Data.Migrations
 
                     b.HasIndex("TimeIdId");
 
-                    b.ToTable("ProjectTimeHistory", (string)null);
+                    b.ToTable("ProjectTimeHistory");
                 });
 
             modelBuilder.Entity("sybring_personal.Models.Billing", b =>
@@ -191,7 +194,7 @@ namespace sybring_personal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Billings", (string)null);
+                    b.ToTable("Billings");
                 });
 
             modelBuilder.Entity("sybring_personal.Models.Consultant", b =>
@@ -233,7 +236,7 @@ namespace sybring_personal.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Consultants", (string)null);
+                    b.ToTable("Consultants");
                 });
 
             modelBuilder.Entity("sybring_personal.Models.Project", b =>
@@ -257,7 +260,7 @@ namespace sybring_personal.Data.Migrations
 
                     b.HasIndex("BillingId");
 
-                    b.ToTable("Projects", (string)null);
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("sybring_personal.Models.TimeHistory", b =>
@@ -273,7 +276,7 @@ namespace sybring_personal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TimeHistories", (string)null);
+                    b.ToTable("TimeHistories");
                 });
 
             modelBuilder.Entity("sybring_personal.Models.User", b =>

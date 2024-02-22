@@ -119,6 +119,7 @@ namespace sybring_personal.Controllers
         }
 
 
+
         public async Task<IActionResult> Delete(int id)
         {
             await _consultantServicves.DeleteConsultantAsync(id);

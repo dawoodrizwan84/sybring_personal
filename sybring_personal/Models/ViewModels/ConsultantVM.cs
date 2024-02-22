@@ -14,6 +14,8 @@ namespace sybring_personal.Models.ViewModels
 
         public string Name { get; set; }
         public string Address { get; set; }
+
+        public string Email { get; set; } = string.Empty;
         public int Price { get; set; }
 
         public string Description { get; set; }
