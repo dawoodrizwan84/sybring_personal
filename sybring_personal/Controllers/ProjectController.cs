@@ -53,7 +53,7 @@ namespace sybring_personal.Controllers
             if (ModelState.IsValid)
             {
                 await _projectServices.AddProjectAsync(project);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             return View(project);
         }

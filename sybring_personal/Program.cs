@@ -18,6 +18,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<User>(options => 
 options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.Configure<IdentityOptions>(options =>
@@ -46,6 +47,7 @@ builder.Services.AddControllersWithViews();
 //Add Services:
 builder.Services.AddScoped<IConsultantServicves, ConsultantServices>();
 builder.Services.AddScoped<IProjectServices, ProjectServices>();
+builder.Services.AddScoped<IUserServices, UserServices>();
 
 
 var app = builder.Build();
